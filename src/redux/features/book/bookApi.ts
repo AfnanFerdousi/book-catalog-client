@@ -1,4 +1,5 @@
 import api from "../../api/apiSlice";
+import {IReview, Inputs} from "../../../types/globalTypes"
 
 interface IGetAllBookParams {
     searchTerm?: string;
@@ -13,6 +14,11 @@ const bookApi = api.injectEndpoints({
         getRecentBooks: build.query({
             query: () => ({
                 url: "/books",
+            }),
+        }),
+        getSingleBook: build.query({
+            query: (id: string) => ({
+                url: `/books/${id}`,
             }),
         }),
         getAllBooks: build.query({
@@ -48,21 +54,37 @@ const bookApi = api.injectEndpoints({
                 return queryString;
             },
         }),
-        // createBook: build.mutation({
-        //     query: (book) => ({
-        //         url: "/books",
-        //         method: "POST",
-        //         body: book,
-        //     }),
-        // })
-        // editBook: build.mutation({
-        //     query: ({ id, body }: { body: Inputs; id: string }) => ({
-        //         url: `/books/${id}`,
-        //         method: "PATCH",
-        //         body: body,
-        //     }),
-        // }),
+        createBook: build.mutation({
+            query: (book: Inputs) => ({
+                url: "/books",
+                method: "POST",
+                body: book,
+            }),
+        }),
+        editBook: build.mutation({
+            query: ({ id, body }: { body: Inputs; id: string }) => ({
+                url: `/books/${id}`,
+                method: "PATCH",
+                body: body,
+            }),
+        }),
+        addReview: build.mutation({
+            query: ({  review, id }: { review: IReview; id: string }) => ({
+                url: `/addReview/${id}`,
+                method: "POST",
+                body: review,
+            }),
+        }),
+        
     }),
 });
 
-export const { useGetRecentBooksQuery, useGetAllBooksQuery } = bookApi;
+export const {
+    useGetRecentBooksQuery,
+    useGetAllBooksQuery,
+    useCreateBookMutation,
+    useEditBookMutation,
+    useAddReviewMutation,
+    useGetSingleBookQuery,
+
+} = bookApi;
