@@ -1,0 +1,68 @@
+import api from "../../api/apiSlice";
+
+interface IGetAllBookParams {
+    searchTerm?: string;
+    publishedAt?: string;
+    genre?: string;
+    author?: string;
+    title?: string;
+}
+
+const bookApi = api.injectEndpoints({
+    endpoints: (build) => ({
+        getRecentBooks: build.query({
+            query: () => ({
+                url: "/books",
+            }),
+        }),
+        getAllBooks: build.query({
+            query: (params: IGetAllBookParams) => {
+                let queryString = "/books";
+                let added = false;
+                if (params.searchTerm) {
+                    queryString += `?searchTerm=${params.searchTerm}`;
+                    added = true;
+                }
+                if (params.publishedAt && added === true) {
+                    queryString += `&publishedAt=${params.publishedAt}`;
+                } else if (params.publishedAt && added == false) {
+                    queryString += `?publishedAt=${params.publishedAt}`;
+                    added = true;
+                }
+                if (params.genre && added === true) {
+                    queryString += `&genre=${params.genre}`;
+                } else if (params.genre && added == false) {
+                    queryString += `?genre=${params.genre}`;
+                    added = true;
+                }
+                if (params.author && added === true) {
+                    queryString += `&author=${params.author}`;
+                } else if (params.author && added == false) {
+                    queryString += `?author=${params.author}`;
+                }
+                if (params.title && added === true) {
+                    queryString += `&title=${params.title}`;
+                } else if (params.title && added == false) {
+                    queryString += `?title=${params.title}`;
+                }
+                return queryString;
+            },
+        }),
+        // createBook: build.mutation({
+        //     query: (book) => ({
+        //         url: "/books",
+        //         method: "POST",
+        //         body: book,
+        //     }),
+        // })
+        // editBook: build.mutation({
+        //     query: ({ id, body }: { body: Inputs; id: string }) => ({
+        //         url: `/books/${id}`,
+        //         method: "PATCH",
+        //         body: body,
+        //     }),
+        // }),
+    }),
+});
+
+export const { useGetRecentBooksQuery, useGetAllBooksQuery } = bookApi;
