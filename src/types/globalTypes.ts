@@ -60,6 +60,6 @@ export type IUserApiData = {
 export type IUser = {
     email: string;
     password: string;
-    wishlist: IBook[];
+    wishlist?: IBook[];
     _id: string;
 };

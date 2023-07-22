@@ -1,5 +1,5 @@
-import { IBook } from "../../../types/globalTypes";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IBook } from "../../../types/globalTypes";
 
 export interface IUser {
     user: {
@@ -22,7 +22,6 @@ const initialState: IUser = {
     user: null,
     token: null,
 };
-
 
 const authSlice = createSlice({
     name: "auth",
