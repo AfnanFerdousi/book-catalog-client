@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import SingleBook from "../pages/SingleBook";
 import MainLayout from "../layouts/MainLayout";
 import EditBook from './../pages/EditBook';
+import AllBooks from "../pages/AllBooks";
 
 const router = createBrowserRouter([
     {
@@ -13,10 +14,10 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Home />,
             },
-            // {
-            //     path: "/all-books",
-            //     element:
-            // },
+            {
+                path: "/books",
+                element: <AllBooks/>
+            },
             {
                 path: "/book/:id",
                 element: <SingleBook />,

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-200">
+        <div className="navbar shadow-lg ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -23,29 +24,42 @@ const Navbar = () => {
                     </label>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52"
                     >
                         <li>
-                            <a>Item 1</a>
-                        </li>                      
+                            <Link className='font-semibold' to="/">Home</Link>
+                        </li>
                         <li>
-                            <a>Item 3</a>
+                            <Link className='font-semibold' to="/books">Books</Link>
+                        </li>
+                        <li>
+                            <Link className='font-semibold' to="/wishlist">WishList</Link>
+                        </li>
+                        <li>
+                            <Link className='font-semibold' to="/login">Login</Link>
                         </li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Book Catalog</a>
+                <Link to="/" className=" text-2xl font-bold ps-3">
+                    Book Catalog
+                </Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li>
-                        <a>Item 1</a>
-                    </li>                
+                        <Link className='font-semibold' to="/">Home</Link>
+                    </li>
                     <li>
-                        <a>Item 3</a>
+                        <Link className='font-semibold' to="/books">Books</Link>
+                    </li>
+                    <li>
+                        <Link className='font-semibold' to="/wishlist">WishList</Link>
+                    </li>
+                    <li>
+                        <Link className='font-semibold' to="/login">Login</Link>
                     </li>
                 </ul>
             </div>
-            
         </div>
     );
 };
