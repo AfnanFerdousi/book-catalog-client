@@ -13,17 +13,17 @@ const bookApi = api.injectEndpoints({
     endpoints: (build) => ({
         getRecentBooks: build.query({
             query: () => ({
-                url: "/books",
+                url: "/book",
             }),
         }),
         getSingleBook: build.query({
             query: (id: string) => ({
-                url: `/books/${id}`,
+                url: `/book/${id}`,
             }),
         }),
         getAllBooks: build.query({
             query: (params: IGetAllBookParams) => {
-                let queryString = "/books";
+                let queryString = "/book";
                 let added = false;
                 if (params.searchTerm) {
                     queryString += `?searchTerm=${params.searchTerm}`;
@@ -56,16 +56,22 @@ const bookApi = api.injectEndpoints({
         }),
         createBook: build.mutation({
             query: (book: Inputs) => ({
-                url: "/books",
+                url: "/book",
                 method: "POST",
                 body: book,
             }),
         }),
         editBook: build.mutation({
             query: ({ id, body }: { body: Inputs; id: string }) => ({
-                url: `/books/${id}`,
+                url: `/book/${id}`,
                 method: "PATCH",
                 body: body,
+            }),
+        }),
+        deleteBook: build.mutation({
+            query: ({ id }: { id: string }) => ({
+                url: `/book/${id}`,
+                method: "DELETE",
             }),
         }),
         addReview: build.mutation({
@@ -86,5 +92,6 @@ export const {
     useEditBookMutation,
     useAddReviewMutation,
     useGetSingleBookQuery,
+    useDeleteBookMutation,
 
 } = bookApi;
