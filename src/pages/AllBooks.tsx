@@ -29,8 +29,65 @@ const AllBooks = () => {
         return <Loader />;
     }
 
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        if (name === "searchTerm") {
+            setSearchValue(value);
+        } else if (name === "publishedAt") {
+            setPublishedAtValue(value);
+        } else if (name === "genre") {
+            setGenreValue(value);
+        } else if (name === "title") {
+            setTitle(value);
+        } else if (name === "author") {
+            setAuthor(value);
+        }
+    }
+
     return (
         <div className="px-12">
+            <div className="pt-6 flex gap-x-3">
+                <input
+                    type="search"
+                    name="searchTerm"
+                    placeholder="Search"
+                    value={search}
+                    className="input input-bordered input-primary w-full max-w-[15rem]"
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="search"
+                    name="title"
+                    placeholder="Title"
+                    value={title}
+                    className="input input-bordered input-primary w-full max-w-[15rem]"
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="search"
+                    name="author"
+                    placeholder="Author"
+                    value={author}
+                    className="input input-bordered input-primary w-full max-w-[15rem]"
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="search"
+                    name="Genre"
+                    placeholder="Genre"
+                    value={genre}
+                    className="input input-bordered input-primary w-full max-w-[15rem]"
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="search"
+                    name="publishedAt"
+                    placeholder="Published At"
+                    value={publishedAt}
+                    className="input input-bordered input-primary w-full max-w-[15rem]"
+                    onChange={handleOnChange}
+                />
+            </div>
             <h2 className="text-4xl font-bold py-8 text-center">All Books</h2>
             <div className="grid grid-cols-3 gap-4 mt-8">
                 {data?.data?.map((book: IBook) => (
