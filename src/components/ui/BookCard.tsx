@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 // BookCard.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IBook, IUser } from "../../types/globalTypes";
 import { useNavigate } from "react-router-dom";
 import {

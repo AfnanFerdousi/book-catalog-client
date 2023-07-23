@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useState } from "react";
+
 import { useGetAllBooksQuery } from "../redux/features/book/bookApi";
 import Loader from "../components/shared/Loader";
 import BookCard from "../components/ui/BookCard";
@@ -42,7 +42,7 @@ const AllBooks = () => {
         } else if (name === "author") {
             setAuthor(value);
         }
-    }
+    };
 
     return (
         <div className="px-12">
