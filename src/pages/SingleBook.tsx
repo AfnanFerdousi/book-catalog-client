@@ -1,16 +1,19 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React from 'react';
+
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {useAddReviewMutation, useDeleteBookMutation, useGetSingleBookQuery} from "../redux/features/book/bookApi";
-import { IBook, IReview } from '../types/globalTypes';
+import {
+    useAddReviewMutation,
+    useDeleteBookMutation,
+    useGetSingleBookQuery,
+} from "../redux/features/book/bookApi";
+import { IBook, IReview } from "../types/globalTypes";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Loader from '../components/shared/Loader';
+import Loader from "../components/shared/Loader";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BiSolidEdit } from "react-icons/bi";
-import {LuStars} from "react-icons/lu"
-import { toast } from 'react-toastify';
-
+import { LuStars } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 type ISingleBookParams = {
     id: string;
@@ -21,40 +24,40 @@ type Inputs = {
 };
 
 const SingleBook = () => {
-   const { id } = useParams<ISingleBookParams>();
-   const { register, handleSubmit } = useForm<Inputs>();
+    const { id } = useParams<ISingleBookParams>();
+    const { register, handleSubmit } = useForm<Inputs>();
     const [addReview] = useAddReviewMutation();
     const [deleteBook] = useDeleteBookMutation();
     const navigate = useNavigate();
 
-   if (!id) {
-       return null;
-   }
+    if (!id) {
+        return null;
+    }
 
-   const onSubmit: SubmitHandler<Inputs> = async (data: IReview) => {
-       console.log(data);
-       await addReview({ review: data, id: id });
-       toast.success("Review Added!");
+    const onSubmit: SubmitHandler<Inputs> = async (data: IReview) => {
+        console.log(data);
+        await addReview({ review: data, id: id });
+        toast.success("Review Added!");
 
-       window.location.reload();
+        window.location.reload();
     };
-    
-  const onDelete = async () => {
-      await deleteBook({ id: id });
-      navigate("/")
-  };
-   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react-hooks/rules-of-hooks
-   const { data, isLoading } = useGetSingleBookQuery(id, {
-       refetchOnMountOrArgChange: true,
-   });
 
-   if (isLoading) {
-       return <Loader/>
-   }
+    const onDelete = async () => {
+        await deleteBook({ id: id });
+        navigate("/");
+    };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, react-hooks/rules-of-hooks
+    const { data, isLoading } = useGetSingleBookQuery(id, {
+        refetchOnMountOrArgChange: true,
+    });
 
-   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-   const book: IBook = data?.data ?? {};
-   console.log(book);
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const book: IBook = data?.data ?? {};
+    console.log(book);
     return (
         <div className="flex gap-20 items-center w-[80%] py-8">
             <div className="w-[50%]">
