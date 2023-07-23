@@ -1,7 +1,7 @@
 // authApi.ts
 
 // Import necessary dependencies and types
-import { IUserApiData } from "../../../types/globalTypes";
+import { IBook, IUserApiData } from "../../../types/globalTypes";
 import api from "./../../api/apiSlice";
 
 // Define the authApi and its endpoints
@@ -25,8 +25,31 @@ const authApi = api.injectEndpoints({
                 body: { email, password },
             }),
         }),
+        addToWishList: build.mutation({
+            query: ({ _id, book }: { _id: string; book: IBook }) => ({
+                url: `/auth/add-to-wish/${_id}`,
+                method: "PATCH",
+                body: { _id, book },
+            }),
+        }),
+        getSingleUser: build.query({
+            query: (id: string) => ({
+                url: `/auth/user/${id}`,
+            }),
+        }),
+        getWishList: build.query({
+            query: (id: string) => ({
+                url: `/auth/wishlist/${id}`,
+            }),
+        }),
     }),
 });
 
 // Export the generated hooks
-export const { useCreateUserMutation, useLoginUserMutation } = authApi;
+export const {
+    useCreateUserMutation,
+    useLoginUserMutation,
+    useGetWishListQuery,
+    useAddToWishListMutation,
+    useGetSingleUserQuery,
+} = authApi;

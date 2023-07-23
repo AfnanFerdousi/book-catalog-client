@@ -55,6 +55,7 @@ export type IBookFilters = {
 export type IUserApiData = {
     email: string;
     password: string;
+    _id: string;
 };
 
 export type IUser = {

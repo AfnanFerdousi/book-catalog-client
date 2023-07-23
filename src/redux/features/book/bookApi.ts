@@ -76,7 +76,7 @@ const bookApi = api.injectEndpoints({
         }),
         addReview: build.mutation({
             query: ({ review, id }: { review: IReview; id: string }) => ({
-                url: `/addReview/${id}`,
+                url: `/book/addReview/${id}`,
                 method: "POST",
                 body: review,
             }),

@@ -21,6 +21,7 @@ const SignUp = () => {
         try {
             await createUser(data);
             toast.success("User Created!");
+             localStorage.setItem("user", JSON.stringify(data.email));
             window.location.href = "/";
         } catch (error) {
             toast.error("Something went wrong!");

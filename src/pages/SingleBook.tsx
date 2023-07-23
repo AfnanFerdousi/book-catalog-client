@@ -9,6 +9,7 @@ import Loader from '../components/shared/Loader';
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BiSolidEdit } from "react-icons/bi";
 import {LuStars} from "react-icons/lu"
+import { toast } from 'react-toastify';
 
 
 type ISingleBookParams = {
@@ -33,6 +34,9 @@ const SingleBook = () => {
    const onSubmit: SubmitHandler<Inputs> = async (data: IReview) => {
        console.log(data);
        await addReview({ review: data, id: id });
+       toast.success("Review Added!");
+
+       window.location.reload();
     };
     
   const onDelete = async () => {
@@ -99,6 +103,12 @@ const SingleBook = () => {
                                 placeholder="Name"
                                 className="input input-bordered w-full max-w-xs mb-2"
                                 {...register("user", { required: true })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Review"
+                                className="input input-bordered w-full max-w-xs mb-2"
+                                {...register("review", { required: true })}
                             />
 
                             <button className="btn btn-sm btn-primary text-white">
