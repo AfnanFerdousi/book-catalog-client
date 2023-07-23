@@ -1,7 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(
+        !!localStorage.getItem("user")
+    );
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        setIsLoggedIn(false);
+    };
+
     return (
         <div className="navbar shadow-lg ">
             <div className="navbar-start">
@@ -27,17 +36,46 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52"
                     >
                         <li>
-                            <Link className='font-semibold' to="/">Home</Link>
+                            <Link className="font-semibold" to="/">
+                                Home
+                            </Link>
                         </li>
                         <li>
-                            <Link className='font-semibold' to="/books">Books</Link>
+                            <Link className="font-semibold" to="/books">
+                                Books
+                            </Link>
                         </li>
                         <li>
-                            <Link className='font-semibold' to="/wishlist">WishList</Link>
+                            <Link className="font-semibold" to="/wishlist">
+                                WishList
+                            </Link>
                         </li>
-                        <li>
-                            <Link className='font-semibold' to="/login">Login</Link>
-                        </li>
+                        {!isLoggedIn ? (
+                            <li>
+                                <Link className="font-semibold" to="/login">
+                                    Login
+                                </Link>
+                            </li>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link
+                                        className="font-semibold"
+                                        to="/book/addBook"
+                                    >
+                                        Add Book
+                                    </Link>
+                                </li>
+                                <li>
+                                    <button
+                                        className="font-semibold"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
                 <Link to="/" className=" text-2xl font-bold ps-3">
@@ -47,17 +85,46 @@ const Navbar = () => {
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li>
-                        <Link className='font-semibold' to="/">Home</Link>
+                        <Link className="font-semibold" to="/">
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        <Link className='font-semibold' to="/books">Books</Link>
+                        <Link className="font-semibold" to="/books">
+                            Books
+                        </Link>
                     </li>
                     <li>
-                        <Link className='font-semibold' to="/wishlist">WishList</Link>
+                        <Link className="font-semibold" to="/wishlist">
+                            WishList
+                        </Link>
                     </li>
-                    <li>
-                        <Link className='font-semibold' to="/login">Login</Link>
-                    </li>
+                    {!isLoggedIn ? (
+                        <li>
+                            <Link className="font-semibold" to="/login">
+                                Login
+                            </Link>
+                        </li>
+                    ) : (
+                        <>
+                            <li>
+                                <Link
+                                    className="font-semibold"
+                                    to="/book/addBook"
+                                >
+                                    Add Book
+                                </Link>
+                            </li>
+                            <li>
+                                <button
+                                    className="font-semibold"
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </button>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </div>
         </div>

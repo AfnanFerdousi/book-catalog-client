@@ -7,25 +7,24 @@ import { IUser } from "../types/globalTypes";
 import { useCreateUserMutation } from "../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import Loader from "../components/shared/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
     const { register, handleSubmit } = useForm<IUser>();
     const createUserMutation = useCreateUserMutation();
     const [createUser, { isLoading }] = createUserMutation;
-    const navigate = useNavigate()
     if (isLoading) {
         return <Loader />;
     }
 
     const handleSubmitData = async (data: IUser) => {
-       try {
-           await createUser(data);
-           toast.success("User Created!");
-           navigate("/");
-       } catch (error) {
-           toast.error("Something went wrong!");
-       }
+        try {
+            await createUser(data);
+            toast.success("User Created!");
+            window.location.href = "/";
+        } catch (error) {
+            toast.error("Something went wrong!");
+        }
     };
     return (
         <div className="hero min-h-[80vh]">

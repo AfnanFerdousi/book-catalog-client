@@ -7,13 +7,12 @@ import { IUserApiData } from "../types/globalTypes";
 import {  useLoginUserMutation } from "../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import Loader from "../components/shared/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
     const { register, handleSubmit } = useForm<IUserApiData>();
     const loginUserMutation = useLoginUserMutation();
     const [loginUser, { isLoading }] = loginUserMutation;
-    const navigate = useNavigate();
     if (isLoading) {
         return <Loader />;
     }
@@ -21,8 +20,9 @@ const SignIn = () => {
     const handleSubmitData = async (data: IUserApiData) => {
         try {
             await loginUser(data);
-            toast.success("User Created!");
-            navigate("/");
+            toast.success("User logged in!");
+            localStorage.setItem("user", JSON.stringify(data.email));
+     window.location.href = "/";
         } catch (error) {
             toast.error("Something went wrong!");
         }
