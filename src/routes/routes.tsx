@@ -7,6 +7,7 @@ import AllBooks from "../pages/AllBooks";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import AddBook from "../pages/AddBook";
+import WishList from "../pages/WishList";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/books",
-                element: <AllBooks/>
+                element: <AllBooks />,
             },
             {
                 path: "/book/:id",
@@ -26,21 +27,24 @@ const router = createBrowserRouter([
             },
             {
                 path: "/book/addBook",
-                element: <AddBook/>
-
+                element: <AddBook />,
             },
             {
                 path: "/editBook/:id",
-                element: <EditBook/>,
+                element: <EditBook />,
+            },
+            {
+                path: "/wishlist",
+                element: <WishList />,
             },
             {
                 path: "/login",
-                element: <SignIn/>
+                element: <SignIn />,
             },
             {
                 path: "/signup",
-                element: <SignUp/>
-            }
+                element: <SignUp />,
+            },
         ],
     },
 ]);

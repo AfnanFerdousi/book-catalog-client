@@ -18,9 +18,7 @@ interface BookCardProps {
 
 const BookCard: React.FC<BookCardProps> = ({ book }) => {
     const user = localStorage.getItem("user");
-    console.log(user)
     const user1 = user?.substring(1, user.length - 1);
-    console.log(user1)
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState<IUser | null>(null);
     const { data, isLoading, error } = useGetSingleUserQuery(user1 || "");
