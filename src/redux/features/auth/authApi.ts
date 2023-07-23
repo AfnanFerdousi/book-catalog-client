@@ -13,11 +13,21 @@ const authApi = api.injectEndpoints({
                 url: "/auth/signup",
                 method: "POST",
                 body: user,
-                credentials: "include",
+            }),
+        }),
+        loginUser: build.mutation<
+            IUserApiData,
+            { email: string; password: string }
+        >({
+            // The query function receives the user's email and password and returns the fetch configuration
+            query: ({ email, password }) => ({
+                url: "/auth/login",
+                method: "POST",
+                body: { email, password },
             }),
         }),
     }),
 });
 
 // Export the generated hooks
-export const { useCreateUserMutation } = authApi;
+export const { useCreateUserMutation, useLoginUserMutation } = authApi;

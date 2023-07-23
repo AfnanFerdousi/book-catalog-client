@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 element: <EditBook/>,
             },
             {
-                path: "/signin",
+                path: "/login",
                 element: <SignIn/>
             },
             {
