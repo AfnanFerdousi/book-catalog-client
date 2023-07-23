@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React from "react";
+
 import { useGetSingleBookQuery } from "../redux/features/book/bookApi";
 import Loader from "./shared/Loader";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ const Wish = ({ book }: any) => {
 
     // Move the hook outside of the asynchronous function
     const [removeWishList] = useRemoveWishMutation();
-   const bookData = data?.data;
+    const bookData = data?.data;
     const onDelete = async () => {
         await removeWishList({ _id: book._id, bookId: bookData._id });
         toast.success("Finished Reading Book");
@@ -29,7 +29,6 @@ const Wish = ({ book }: any) => {
         return <Loader />;
     }
 
- 
     return (
         <div className="w-[50%]">
             <div className="flex items-center gap-x-4 bg-base-100 shadow-xl">

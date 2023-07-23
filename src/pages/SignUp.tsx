@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import { IUser } from "../types/globalTypes";
 import { useCreateUserMutation } from "../redux/features/auth/authApi";
@@ -21,7 +21,7 @@ const SignUp = () => {
         try {
             await createUser(data);
             toast.success("User Created!");
-             localStorage.setItem("user", JSON.stringify(data.email));
+            localStorage.setItem("user", JSON.stringify(data.email));
             window.location.href = "/";
         } catch (error) {
             toast.error("Something went wrong!");

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import { IUserApiData } from "../types/globalTypes";
-import {  useLoginUserMutation } from "../redux/features/auth/authApi";
+import { useLoginUserMutation } from "../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import Loader from "../components/shared/Loader";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ const SignIn = () => {
             await loginUser(data);
             toast.success("User logged in!");
             localStorage.setItem("user", JSON.stringify(data.email));
-     window.location.href = "/";
+            window.location.href = "/";
         } catch (error) {
             toast.error("Something went wrong!");
         }
@@ -77,7 +77,10 @@ const SignIn = () => {
                             </div>
                         </form>
                         <div className="font-semibold">
-                            Already have an account? <Link className="text-blue-600" to="/signup">SignUp</Link>
+                            Already have an account?{" "}
+                            <Link className="text-blue-600" to="/signup">
+                                SignUp
+                            </Link>
                         </div>
                     </div>
                 </div>
