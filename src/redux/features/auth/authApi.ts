@@ -19,7 +19,6 @@ const authApi = api.injectEndpoints({
             IUserApiData,
             { email: string; password: string }
         >({
-            // The query function receives the user's email and password and returns the fetch configuration
             query: ({ email, password }) => ({
                 url: "/auth/login",
                 method: "POST",

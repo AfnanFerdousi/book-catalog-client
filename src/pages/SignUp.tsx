@@ -7,7 +7,7 @@ import { IUser } from "../types/globalTypes";
 import { useCreateUserMutation } from "../redux/features/auth/authApi";
 import { toast } from "react-toastify";
 import Loader from "../components/shared/Loader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const { register, handleSubmit } = useForm<IUser>();
@@ -76,6 +76,12 @@ const SignUp = () => {
                                 </button>
                             </div>
                         </form>
+                        <div className="font-semibold">
+                            Already have an account?{" "}
+                            <Link className="text-blue-600" to="/login">
+                                Login
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
