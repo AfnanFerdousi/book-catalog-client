@@ -6,6 +6,7 @@ import { useGetAllBooksQuery } from "../redux/features/book/bookApi";
 import Loader from "../components/shared/Loader";
 import BookCard from "../components/ui/BookCard";
 import { IBook } from "../types/globalTypes";
+import { useState } from 'react';
 
 const AllBooks = () => {
     const [search, setSearchValue] = useState("");

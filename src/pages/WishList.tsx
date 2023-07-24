@@ -48,7 +48,7 @@ const WishList = () => {
             </h2>
             <div className="mx-auto flex flex-col justify-center items-center gap-4">
                 {wishListData?.data?.wishList &&
-                    wishListData?.data?.wishList.map((book: IBook) => (
+                    wishListData?.data?.wishList?.map((book: IBook) => (
                         <Wish key={book._id} book={book} />
                     ))}
             </div>
