@@ -11,6 +11,7 @@ import {
     useGetSingleUserQuery,
 } from "../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
+import Loader from "../shared/Loader";
 
 interface BookCardProps {
     book: IBook;
@@ -21,7 +22,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
     const user1 = user?.substring(1, user.length - 1);
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState<IUser | null>(null);
-    const { data, isLoading, error } = useGetSingleUserQuery(user1 || "");
+    const { data, isLoading } = useGetSingleUserQuery(user1 || "");
 
     useEffect(() => {
         if (data) {
@@ -53,12 +54,12 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader/>
     }
 
-    if (error) {
-        return <div>Error fetching user data</div>;
-    }
+    // if (error) {
+    //     return <div>Error fetching user data</div>;
+    // }
 
     return (
         <div className="card bg-base-100 shadow-xl">
